@@ -1,0 +1,13 @@
+{
+  "name": "blackspike-website",
+  "version": "1.0.0",
+  "description": "Blackspike Ltd official website",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": ["web-design", "product-design", "branding", "3d-design"],
+  "author": "Blackspike Ltd",
+  "license": "MIT"
+}
