@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>blackspike ltd — Web Design, Product Design, Branding & 3D in Brighton, UK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--bg-card:#141414;--bg-card-hover:#1a1a1a;
+  --text:#f0f0f0;--text-muted:#888;--text-dim:#555;
+  --accent-purple:#7c3aed;--accent-blue:#3b82f6;--accent-orange:#f97316;
+  --accent-pink:#ec4899;--accent-green:#22c55e;--accent-cyan:#06b6d4;
+  --accent-yellow:#eab308;--accent-red:#ef4444;
+  --radius:16px;--radius-sm:10px;
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(10,10,10,0.7);border-bottom:1px solid rgba(255,255,255,0.05)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.1rem;letter-spacing:-0.02em}
+.logo svg{width:32px;height:32px}
+.logo-text{color:#fff}
+.logo-text span{color:var(--accent-pink)}
+.nav{display:flex;gap:8px;align-items:center}
+.nav a{padding:8px 16px;border-radius:8px;font-size:0.875rem;font-weight:500;color:var(--text-muted);transition:all .2s}
+.nav a:hover{color:#fff;background:rgba(255,255,255,0.08)}
+.nav-cta{background:var(--accent-pink)!important;color:#fff!important;font-weight:600}
+.nav-cta:hover{background:#db2777!important}
+.mobile-toggle{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:8px}
+.mobile-toggle svg{width:28px;height:28px}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:120px 24px 80px}
+.hero-canvas-wrapper{position:absolute;inset:0;z-index:0}
+.hero-canvas-wrapper canvas{width:100%!important;height:100%!important;display:block}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0.2) 0%,rgba(10,10,10,0.6) 50%,var(--bg) 100%);z-index:1;pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:900px;text-align:center}
+.hero-title{font-size:clamp(2rem,5vw,3.8rem);font-weight:800;line-height:1.15;letter-spacing:-0.03em}
+.hero-title .highlight{color:#fff}
+.hero-title .dim{color:var(--text-muted)}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;color:var(--text-dim);font-size:0.8rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* SECTIONS */
+.section{padding:80px 0}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:48px}
+.section-title a{color:#fff;transition:opacity .2s}
+.section-title a:hover{opacity:0.7}
+
+/* WEB DESIGN */
+.web-design-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.wd-card{border-radius:var(--radius);overflow:hidden;position:relative;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;transition:transform .3s}
+.wd-card:hover{transform:translateY(-4px)}
+.wd-card--full{grid-column:1/-1}
+.wd-card--purple{background:linear-gradient(135deg,#4c1d95,#7c3aed)}
+.wd-card--blue{background:linear-gradient(135deg,#1e3a5f,#3b82f6)}
+.wd-card--dark-purple{background:linear-gradient(135deg,#2d1b69,#5b21b6)}
+.wd-card--teal{background:linear-gradient(135deg,#0f2027,#134e4a)}
+.wd-card--orange{background:linear-gradient(135deg,#7c2d12,#ea580c)}
+.wd-card h3{font-size:1.5rem;font-weight:700;margin-bottom:8px}
+.wd-card p{font-size:0.95rem;color:rgba(255,255,255,0.8);line-height:1.5}
+.wd-card .tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;background:rgba(255,255,255,0.15);margin-top:12px}
+.wd-card-img{position:absolute;top:0;right:0;width:50%;height:100%;object-fit:cover;opacity:0.9}
+.wd-card--has-img{padding-right:55%}
+
+/* CODE CARD */
+.code-card{background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:var(--radius);padding:40px;position:relative;overflow:hidden;min-height:300px;display:flex;align-items:center}
+.code-block{font-family:var(--mono);font-size:0.9rem;line-height:1.8}
+.code-block .comment{color:#6b7280}
+.code-block .cyan{color:#06b6d4}
+.code-block .orange{color:#f97316}
+.code-block .blue{color:#3b82f6}
+.code-block .purple{color:#a78bfa}
+.code-block .foof{color:#22c55e}
+.code-block .yellow{color:#eab308}
+.code-block .orangered{color:#ef4444}
+.code-globe{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#1e3a5f,#0f172a);opacity:0.6}
+
+/* ASTRO CARD */
+.astro-card{background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:var(--radius);padding:40px;display:flex;align-items:center;gap:40px;min-height:320px;position:relative;overflow:hidden}
+.astro-card h3{font-size:1.5rem;font-weight:700;margin-bottom:12px}
+.astro-card p{color:var(--text-muted);font-size:0.95rem;line-height:1.6}
+.astro-canvas-wrapper{flex-shrink:0;width:220px;height:280px;border-radius:var(--radius);overflow:hidden;position:relative;background:radial-gradient(ellipse at center,#1e1b4b 0%,#0a0a1a 100%)}
+.astro-canvas-wrapper canvas{width:100%!important;height:100%!important;display:block}
+
+/* PRODUCT DESIGN */
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.product-card{border-radius:var(--radius);overflow:hidden;background:var(--bg-card);border:1px solid rgba(255,255,255,0.06);transition:all .3s;cursor:pointer}
+.product-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-4px)}
+.product-card-content{padding:28px}
+.product-card h3{font-size:1.3rem;font-weight:700;margin-bottom:8px}
+.product-card p{color:var(--text-muted);font-size:0.9rem;line-height:1.5}
+.product-card-img{width:100%;height:280px;overflow:hidden}
+.product-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.product-card:hover .product-card-img img{transform:scale(1.05)}
+
+/* BRANDING */
+.branding-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.branding-card{border-radius:var(--radius);overflow:hidden;background:var(--bg-card);border:1px solid rgba(255,255,255,0.06);transition:all .3s;cursor:pointer;min-height:260px}
+.branding-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-4px)}
+.branding-card-content{padding:24px}
+.branding-card h3{font-size:1.2rem;font-weight:700;margin-bottom:6px}
+.branding-card p{color:var(--text-muted);font-size:0.85rem}
+.branding-card-img{width:100%;height:200px;overflow:hidden}
+.branding-card-img img{width:100%;height:100%;object-fit:cover}
+.branding-card--logo{background:linear-gradient(135deg,#4c1d95,#7c3aed)}
+.branding-card--logo h3,.branding-card--logo p{color:#fff}
+.branding-card--icons{background:#111}
+.branding-card--icons h3,.branding-card--icons p{color:#fff}
+.branding-card--slides{background:linear-gradient(135deg,#831843,#be185d)}
+.branding-card--slides h3,.branding-card--slides p{color:#fff}
+.branding-card--animation{background:#111}
+.branding-card--animation h3,.branding-card--animation p{color:#fff}
+.branding-card--print{background:#111;position:relative}
+.branding-card--print h3,.branding-card--print p{color:#fff}
+.branding-card--email{background:#111}
+.branding-card--email h3,.branding-card--email p{color:#fff}
+
+/* 3D DESIGN */
+.three-d-section{text-align:center}
+.three-d-subtitle{color:var(--text-muted);font-size:1.1rem;max-width:500px;margin:0 auto 48px}
+
+/* CASE STUDIES */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.case-card{border-radius:var(--radius);overflow:hidden;background:var(--bg-card);border:1px solid rgba(255,255,255,0.06);transition:all .3s;cursor:pointer}
+.case-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-4px)}
+.case-card-img{width:100%;height:280px;overflow:hidden}
+.case-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.case-card:hover .case-card-img img{transform:scale(1.05)}
+.case-card-content{padding:20px}
+.case-card h3{font-size:1.1rem;font-weight:700;margin-bottom:6px}
+.case-card p{color:var(--text-muted);font-size:0.85rem;line-height:1.5}
+
+/* BLOG */
+.blog-featured{border-radius:var(--radius);overflow:hidden;background:var(--bg-card);border:1px solid rgba(255,255,255,0.06);margin-bottom:24px;cursor:pointer;transition:all .3s}
+.blog-featured:hover{border-color:rgba(255,255,255,0.15)}
+.blog-featured-img{width:100%;height:350px;overflow:hidden}
+.blog-featured-img img{width:100%;height:100%;object-fit:cover}
+.blog-featured-content{padding:32px}
+.blog-featured h3{font-size:1.5rem;font-weight:700;margin-bottom:12px}
+.blog-featured p{color:var(--text-muted);font-size:1rem;line-height:1.6;margin-bottom:16px}
+.blog-featured time{color:var(--text-dim);font-size:0.85rem}
+.blog-list{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.blog-post{padding:24px;border-radius:var(--radius-sm);background:var(--bg-card);border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:all .3s}
+.blog-post:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
+.blog-post h4{font-size:1rem;font-weight:600;margin-bottom:8px;line-height:1.4}
+.blog-post time{color:var(--text-dim);font-size:0.8rem}
+
+/* FAQ */
+.faq-list{max-width:800px}
+.faq-item{border-bottom:1px solid rgba(255,255,255,0.08)}
+.faq-question{width:100%;padding:24px 0;background:none;border:none;color:#fff;font-size:1.1rem;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:var(--font);transition:color .2s}
+.faq-question:hover{color:var(--accent-pink)}
+.faq-question .faq-icon{font-size:1.5rem;transition:transform .3s;flex-shrink:0;margin-left:16px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.faq-item.open .faq-answer{max-height:300px;padding-bottom:24px}
+.faq-answer p{color:var(--text-muted);font-size:0.95rem;line-height:1.7}
+
+/* FOOTER */
+.footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-nav{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:32px}
+.footer-nav a{color:var(--text-muted);font-size:0.9rem;transition:color .2s}
+.footer-nav a:hover{color:#fff}
+.footer-bottom{text-align:center;color:var(--text-dim);font-size:0.8rem}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav{display:none}
+  .nav.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:rgba(10,10,10,0.95);padding:24px;backdrop-filter:blur(20px);z-index:999}
+  .mobile-toggle{display:block}
+  .web-design-grid,.product-grid,.branding-grid,.case-grid,.blog-list{grid-template-columns:1fr}
+  .hero-title{font-size:1.8rem}
+  .astro-card{flex-direction:column}
+  .astro-canvas-wrapper{width:100%;height:240px}
+  .section{padding:60px 0}
+}
+@media(max-width:480px){
+  .container{padding:0 16px}
+  .hero{padding:100px 16px 60px}
+}
+
+/* Marquee */
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* Email grid animation */
+.email-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:4px}
+.email-cell{width:100%;aspect-ratio:1;background:rgba(255,255,255,0.05);border-radius:4px;transition:all .3s}
+.email-cell.open{background:var(--accent-orange);box-shadow:0 0 8px rgba(249,115,22,0.5)}
+
+/* Scroll indicator */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent-pink),var(--accent-purple));z-index:1001;transition:width .1s}
+
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.2);opacity:0.7}}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="#" class="logo">
+    <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#ec4899" stroke-width="3"/><path d="M20 8c-4 4-8 8-8 14s4 10 8 10 8-4 8-10-4-10-8-14z" fill="#ec4899" opacity="0.6"/></svg>
+    <span class="logo-text">black<span>spike</span></span>
+  </a>
+  <nav class="nav" id="mainNav">
+    <a href="#web-design">Websites</a>
+    <a href="#product">Product</a>
+    <a href="#3d">3D</a>
+    <a href="#branding">Branding</a>
+    <a href="#services">All Services</a>
+    <a href="#case-studies">Case Studies</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </nav>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</header>
+
+<!-- HERO with optimized Three.js WebGL Canvas -->
+<section class="hero" id="hero">
+  <div class="hero-canvas-wrapper" id="heroCanvasWrapper">
+    <canvas class="js-webgl" id="heroCanvas"></canvas>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="highlight">blackspike ltd</span> <span class="highlight">designs and builds websites</span> <span class="dim">with Astro, Vue, Nuxt, Wordpress and passion in Brighton, UK</span>
+    </h1>
+  </div>
+  <div class="hero-scroll">↓ Scroll to explore</div>
+</section>
+
+<!-- WEB DESIGN -->
+<section class="section" id="web-design">
+  <div class="container">
+    <h2 class="section-title fade-in"><a href="#">Web Design</a></h2>
+    <div class="web-design-grid">
+      <div class="wd-card wd-card--purple wd-card--has-img fade-in" style="position:relative">
+        <img class="wd-card-img" src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/149a56710-8b5a-471d-8d50-31b747d3a007.png" alt="brighton.dog website">
+        <h3>Design, Dev & Deploy</h3>
+        <p>We've been creating websites since 1999 for businesses, non-profits and artists. From wireframes to design to code, we offer a complete web design service.</p>
+        <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
+          <span class="tag">Custom</span>
+          <span class="tag">WordPress</span>
+          <span class="tag">Ecommerce</span>
+        </div>
+      </div>
+      <div class="wd-card wd-card--blue fade-in">
+        <h3>UX</h3>
+        <p>We do the thinking so users won't need to. With testing and rapid prototyping we guarantee a great user experience.</p>
+        <svg style="position:absolute;bottom:0;right:0;width:60%;opacity:0.15" viewBox="0 0 200 200"><rect x="10" y="10" width="180" height="60" rx="4" fill="none" stroke="white" stroke-width="2"/><rect x="10" y="80" width="85" height="110" rx="4" fill="none" stroke="white" stroke-width="2"/><rect x="105" y="80" width="85" height="110" rx="4" fill="none" stroke="white" stroke-width="2"/><circle cx="52" cy="135" r="20" fill="none" stroke="white" stroke-width="2"/><line x1="72" y1="135" x2="140" y2="135" stroke="white" stroke-width="2"/><line x1="72" y1="120" x2="130" y2="120" stroke="white" stroke-width="2"/><line x1="72" y1="150" x2="120" y2="150" stroke="white" stroke-width="2"/></svg>
+      </div>
+      <div class="wd-card wd-card--dark-purple fade-in" style="position:relative">
+        <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/110d73ef9-d62a-494e-9a66-3a252d7409a2.png" alt="Colorful 3D balls" style="position:absolute;right:0;top:0;width:50%;height:100%;object-fit:cover;opacity:0.7">
+        <h3>Design</h3>
+        <p>Functional and beautiful. We deliver clean, pixel-perfect interface design with details that will delight your users.</p>
+      </div>
+      <div class="code-card wd-card--full fade-in">
+        <div class="code-block">
+          <div class="comment">// Modern, fast & accessible.</div>
+          <br>
+          <div><span class="cyan">We code</span> ( <span class="purple">highly performant</span> ) websites {</div>
+          <div style="padding-left:20px">built to feel <span class="foof">snappy</span> on <span class="yellow">any device</span></div>
+          <div style="padding-left:20px">from <span class="purple">low-end phones</span> to <span class="purple">tablets</span> to <span class="purple">TVs</span></div>
+          <div>}</div>
+          <br>
+          <div><span class="cyan">Experts at</span> [ <span class="orange">HTML</span>, <span class="blue">CSS</span>, <span class="yellow">JavaScript</span> & <span class="foof">Vue</span> ] {</div>
+          <div style="padding-left:20px">If it's ( <span class="purple">digital</span> ) <span class="orangered">we can build it</span></div>
+          <div>}</div>
+        </div>
+        <div class="code-globe"></div>
+      </div>
+
+      <!-- ASTRO CARD with Three.js Canvas (js-astro-webgl replacement) -->
+      <div class="astro-card wd-card--full fade-in" id="astroCard">
+        <div style="flex:1">
+          <h3>🚀 astro development</h3>
+          <p>Need to hire Astro developers? We are experts at Astro JS content-first static sites and Starlight documentation.</p>
+          <p style="margin-top:12px">We have deep experience in static site generation with Astro, using markdown or a headless CMS like Directus, decoupled WordPress, or your custom data API.</p>
+        </div>
+        <div class="astro-canvas-wrapper" id="astroCanvasWrapper">
+          <canvas class="js-astro-webgl" id="astroCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT DESIGN -->
+<section class="section" id="product">
+  <div class="container">
+    <h2 class="section-title fade-in"><a href="#">Product Design</a></h2>
+    <div class="product-grid">
+      <div class="product-card fade-in">
+        <div class="product-card-content">
+          <h3>Mobile Apps</h3>
+          <p>Our Progressive Web Apps offer a native-like experience for a fraction of the cost</p>
+        </div>
+        <div class="product-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/13733970c-09e8-4f35-b683-1f3af698c169.png" alt="iPhone app">
+        </div>
+      </div>
+      <div class="product-card fade-in">
+        <div class="product-card-content">
+          <h3>Vue + Nuxt</h3>
+          <p>Expert Nuxt & Vue.js development, from simple components to 1000-page Nuxt applications</p>
+        </div>
+        <div class="product-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/16d215013-3e5f-4d04-b27d-3bdba9faee2e.png" alt="MacBook code">
+        </div>
+      </div>
+      <div class="product-card fade-in">
+        <div class="product-card-content">
+          <h3>Web Apps</h3>
+          <p>We design and build powerful single page web apps that feel as fast as desktop applications</p>
+        </div>
+        <div class="product-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/11a61b2cc-4777-4f12-8cf6-ae22bca5985b.png" alt="iPad web app">
+        </div>
+      </div>
+      <div class="product-card fade-in">
+        <div class="product-card-content">
+          <h3>Custom APIs</h3>
+          <p>We build fast, scalable REST and GraphQL Node.js APIs for powerful, inexpensive serverless apps</p>
+        </div>
+        <div class="product-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/161d68dd1-5026-4ec5-a989-7c98f22379ae.png" alt="Laptop pixel art">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDING -->
+<section class="section" id="branding">
+  <div class="container">
+    <h2 class="section-title fade-in"><a href="#">Branding</a></h2>
+    <div class="branding-grid">
+      <div class="branding-card branding-card--logo fade-in">
+        <div class="branding-card-content">
+          <h3>Logo Design</h3>
+          <p>Refresh and rebrand with a beautiful new logo</p>
+        </div>
+        <div style="padding:0 24px 24px;display:flex;gap:12px;flex-wrap:wrap">
+          <div style="width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem"></div>
+          <div style="width:60px;height:60px;border-radius:12px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem">✏️</div>
+          <div style="width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem">🎯</div>
+          <div style="width:60px;height:60px;border-radius:12px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem">🎯</div>
+        </div>
+      </div>
+      <div class="branding-card branding-card--icons fade-in">
+        <div class="branding-card-content">
+          <h3>Icon Design</h3>
+          <p>Custom icon suites for designers and devs</p>
+        </div>
+        <div class="branding-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/14dfdcc53-d0cc-44cd-8c35-fe92a961fc2e.png" alt="Neon icons">
+        </div>
+      </div>
+      <div class="branding-card branding-card--slides fade-in">
+        <div class="branding-card-content">
+          <h3>Slide Decks</h3>
+          <p>Present your best self with a styled PowerPoint</p>
+        </div>
+        <div style="padding:0 24px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div style="aspect-ratio:16/9;border-radius:6px;background:rgba(255,255,255,0.15)"></div>
+          <div style="aspect-ratio:16/9;border-radius:6px;background:rgba(255,255,255,0.25)"></div>
+          <div style="aspect-ratio:16/9;border-radius:6px;background:rgba(255,255,255,0.1)"></div>
+          <div style="aspect-ratio:16/9;border-radius:6px;background:rgba(255,255,255,0.2)"></div>
+          <div style="aspect-ratio:16/9;border-radius:6px;background:rgba(255,255,255,0.15)"></div>
+          <div style="aspect-ratio:16/9;border-radius:6px;background:rgba(255,255,255,0.3)"></div>
+        </div>
+      </div>
+      <div class="branding-card branding-card--animation fade-in">
+        <div class="branding-card-content">
+          <h3>Animation</h3>
+          <p>Motion graphics to get your brand moving</p>
+        </div>
+        <div class="branding-card-img" style="background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;gap:16px;padding:20px">
+          <div style="width:50px;height:50px;border-radius:50%;background:var(--accent-cyan);animation:pulse 2s infinite"></div>
+          <div style="width:40px;height:40px;border-radius:8px;background:var(--accent-yellow);animation:pulse 2s infinite 0.3s"></div>
+          <div style="width:45px;height:45px;border-radius:50%;background:var(--accent-pink);animation:pulse 2s infinite 0.6s"></div>
+          <div style="width:35px;height:35px;border-radius:8px;background:var(--accent-green);animation:pulse 2s infinite 0.9s"></div>
+        </div>
+      </div>
+      <div class="branding-card branding-card--print fade-in">
+        <div class="branding-card-content" style="position:relative;z-index:2">
+          <h3>Print Design</h3>
+          <p>Make paper with neat stationery & merch</p>
+        </div>
+        <div style="position:absolute;inset:0;opacity:0.15;font-size:0.7rem;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:20px;overflow:hidden">
+          <div style="white-space:nowrap;animation:marquee 15s linear infinite">Merch · Leaflets · Posters · Stickers · Annual Reports · Flyers · Letterheads · Banners · T-Shirts · Business Cards · </div>
+          <div style="white-space:nowrap;animation:marquee 18s linear infinite reverse">T-Shirts · Banners · Business Cards · Comp Slips · Posters · Stickers · Annual Reports · Flyers · Letterheads · </div>
+          <div style="white-space:nowrap;animation:marquee 20s linear infinite">Business Cards · Annual Reports · Posters · Stickers · Comp Slips · Banners · Merch · T-Shirts · </div>
+        </div>
+      </div>
+      <div class="branding-card branding-card--email fade-in">
+        <div class="branding-card-content">
+          <h3>Email Design</h3>
+          <p>HTML e-newsletters and transactional emails</p>
+        </div>
+        <div class="email-grid" id="emailGrid" style="padding:0 24px 24px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3D DESIGN -->
+<section class="section three-d-section" id="3d">
+  <div class="container">
+    <h2 class="section-title fade-in"><a href="#">3D Design</a></h2>
+    <p class="three-d-subtitle fade-in">Three-dimensional illustration, animation and interactive web experiences</p>
+    <div class="fade-in">
+      <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/19b9bb631-b0f3-421c-92cf-728745546b33.png" alt="3D ghost characters" style="max-width:700px;margin:0 auto;border-radius:var(--radius)">
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="section" id="case-studies">
+  <div class="container">
+    <h2 class="section-title fade-in"><a href="#">Case Studies</a></h2>
+    <div class="case-grid">
+      <div class="case-card fade-in">
+        <div class="case-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/1fdd6b4e2-dea9-4c0c-9f51-058db35cbba9.png" alt="Kompass CMS">
+        </div>
+        <div class="case-card-content">
+          <h3>Kompass: Astro + Directus</h3>
+          <p>A new Astro and Tailwind website, using Directus for the CMS</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/16f01c228-519e-43cc-9aaa-b8d9daf611c9.png" alt="OSMF">
+        </div>
+        <div class="case-card-content">
+          <h3>OSMF — logo & Starlight</h3>
+          <p>A pro-bono new logo, brand guidelines, motion graphics and Astro / Starlight website</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/11c19ed6c-620b-4c96-afb2-cc7588164dc0.png" alt="Firegiant">
+        </div>
+        <div class="case-card-content">
+          <h3>firegiant.com</h3>
+          <p>A new Astro, Vue, and Starlight website for the world's leading software installation experts</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/1de07dbcd-9a3d-4bcb-b064-97f3ca112a6c.png" alt="Azure Weekly">
+        </div>
+        <div class="case-card-content">
+          <h3>Azure Weekly brand refresh</h3>
+          <p>We were asked to refresh the suite of logos for endjin's weekly newsletters</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/1e8e3d062-97f5-4520-b5ba-f4380f751024.png" alt="SQLBits">
+        </div>
+        <div class="case-card-content">
+          <h3>SQLBits.com</h3>
+          <p>A new Nuxt website + custom video on demand SPA — in just 9 weeks</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-card-img">
+          <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/14401c8f0-6551-4f5d-96ef-192b59206b99.png" alt="Firefish">
+        </div>
+        <div class="case-card-content">
+          <h3>firefish branding</h3>
+          <p>A new logo for firefish.social</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="section" id="blog">
+  <div class="container">
+    <h2 class="section-title fade-in"><a href="#">Latest from the blackspike blog</a></h2>
+    <div class="blog-featured fade-in">
+      <div class="blog-featured-img">
+        <img src="https://image.qwenlm.ai/public_source/1c845e17-6b38-49cf-9f10-892d5b2a10dd/1d8c63762-1f27-4c36-9ec0-575fdfa79c2f.png" alt="Blog featured">
+      </div>
+      <div class="blog-featured-content">
+        <h3>blackspike astro landing page</h3>
+        <p>A free, modern, Astro landing page theme made with Tailwind to help kick start your next Astro project. Built with cutting edge HTML, CSS and Astro features.</p>
+        <time>19 May 2025</time>
+      </div>
+    </div>
+    <div class="blog-list">
+      <div class="blog-post fade-in">
+        <h4>Converting an Astro 5 website to Nuxt 4, or: Nuxt vs Astro for Astro developers</h4>
+        <time>11 Jul 2025</time>
+      </div>
+      <div class="blog-post fade-in">
+        <h4>blackspike wallpapers</h4>
+        <time>20 Jun 2025</time>
+      </div>
+      <div class="blog-post fade-in">
+        <h4>We vibe-coded a Nuxt 4 PWA. A concerned webdev agency's initial reactions.</h4>
+        <time>11 Jun 2025</time>
+      </div>
+      <div class="blog-post fade-in">
+        <h4>Make custom macOS apps: creating our own web development tools</h4>
+        <time>25 May 2025</time>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <h2 class="section-title fade-in"><a href="#">FAQs</a></h2>
+    <div class="faq-list fade-in">
+      <div class="faq-item">
+        <button class="faq-question">Alright, how much does it cost to hire you? <span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>We charge a fixed daily or hourly rate, with a 20% discount for projects lasting over two weeks. Every project is different, but some ballpark figures are: logo & branding £500-£2000, WordPress sites £2-6k, ecommerce sites £10-20k. Bespoke projects are fixed-rate.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What kind of clients do you take on? <span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>We specialise in small-to-medium size enterprises, normally between 1-100-person companies but we can rise to any challenge. From lonely solo startups on up, we can help.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How long do projects take? <span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>For a rough idea, branding takes a day or two, websites normally 5-20 days, ecommerce sites 20-60 days. If you're in some sort of trouble we can work faster, for extra cost.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can you help us with some weird technology? <span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Probably! We've been around a long while, from Flash and Silverlight to AR/VR, DHTML to XAML. If it's digital, we can do it. That said, we're mostly a Node/Javascript/PHP house, but we do a lot of work with .net folk. Ask us!</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Writing content is hard! Also we have no images. <span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Content is frequently a bottleneck, and as such, we have developed a network of expert copywriters, videographers and SEO experts to ease the burden of a blank slate.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">We are a small non-profit and have next to no budget <span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>That's not really a question but we are always delighted to help charities with branding and websites. We made a whole page about it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-nav">
+      <a href="#hero">Top</a>
+      <a href="#">Home</a>
+      <a href="#web-design">Websites</a>
+      <a href="#product">Product</a>
+      <a href="#3d">3D</a>
+      <a href="#branding">Branding</a>
+      <a href="#">All Services</a>
+      <a href="#case-studies">Case Studies</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 blackspike ltd. Designed and built with passion in Brighton, UK.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Three.js for Hero + Astro canvases -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+// ============================================================
+// HERO CANVAS - Colorful bouncing balls (InstancedMesh)
+// ============================================================
+(function initHeroCanvas() {
+  const canvas = document.getElementById('heroCanvas');
+  const wrapper = document.getElementById('heroCanvasWrapper');
+  if (!canvas || !wrapper) return;
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    antialias: false,
+    alpha: true,
+    powerPreference: 'high-performance'
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 25);
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+  scene.add(ambientLight);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
+  dirLight.position.set(5, 10, 7);
+  scene.add(dirLight);
+  const pointLight = new THREE.PointLight(0xec4899, 1.2, 40);
+  pointLight.position.set(0, 5, 8);
+  scene.add(pointLight);
+
+  const NUM_BALLS = 35;
+  const sphereGeo = new THREE.SphereGeometry(1, 12, 12);
+  const ballColors = [
+    0xff0000, 0xff6600, 0xffcc00, 0x00cc44, 0x0099ff,
+    0x9900ff, 0xff0099, 0x00ffcc, 0xff3366, 0x33ccff,
+    0xff9900, 0x66ff33, 0xcc33ff, 0x0066ff, 0xff0066,
+    0x00ff99, 0xff6600, 0x3399ff, 0xff33cc, 0x66cc00
+  ];
+
+  const instancedMesh = new THREE.InstancedMesh(sphereGeo, new THREE.MeshStandardMaterial({
+    roughness: 0.25, metalness: 0.2
+  }), NUM_BALLS);
+
+  const balls = [];
+  const dummy = new THREE.Object3D();
+  const colorObj = new THREE.Color();
+  const BOUNDS = { x: 14, y: 10, z: 6 };
+  const GRAVITY = -9.8;
+  const DAMPING = 0.985;
+  const BOUNCE = 0.65;
+
+  for (let i = 0; i < NUM_BALLS; i++) {
+    const radius = 0.7 + Math.random() * 1.4;
+    const color = ballColors[i % ballColors.length];
+    colorObj.setHex(color);
+    instancedMesh.setColorAt(i, colorObj);
+    balls.push({
+      x: (Math.random() - 0.5) * BOUNDS.x * 1.5,
+      y: 8 + Math.random() * 12,
+      z: (Math.random() - 0.5) * BOUNDS.z,
+      vx: (Math.random() - 0.5) * 3,
+      vy: -Math.random() * 2,
+      vz: (Math.random() - 0.5) * 1.5,
+      radius: radius,
+      mass: radius,
+      rotX: Math.random() * Math.PI * 2,
+      rotY: Math.random() * Math.PI * 2,
+      rotSpeedX: (Math.random() - 0.5) * 2,
+      rotSpeedY: (Math.random() - 0.5) * 2
+    });
+  }
+  instancedMesh.instanceColor.needsUpdate = true;
+  scene.add(instancedMesh);
+
+  let mouseX = 0, mouseY = 0;
+  let targetMouseX = 0, targetMouseY = 0;
+  let isMouseActive = false;
+  let mouseTimer = null;
+
+  wrapper.addEventListener('mousemove', (e) => {
+    const rect = wrapper.getBoundingClientRect();
+    targetMouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    targetMouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    isMouseActive = true;
+    clearTimeout(mouseTimer);
+    mouseTimer = setTimeout(() => { isMouseActive = false; }, 150);
+  }, { passive: true });
+  wrapper.addEventListener('mouseleave', () => { isMouseActive = false; }, { passive: true });
+
+  function onResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+  window.addEventListener('resize', onResize, { passive: true });
+
+  let lastTime = performance.now();
+  let accumulator = 0;
+  const FIXED_DT = 1/60;
+  let frameCount = 0;
+  let time = 0;
+  let isVisible = true;
+
+  function updatePhysics(dt) {
+    const mouseWorldX = targetMouseX * BOUNDS.x;
+    const mouseWorldY = -targetMouseY * BOUNDS.y;
+    for (let i = 0; i < NUM_BALLS; i++) {
+      const b = balls[i];
+      b.vy += GRAVITY * dt;
+      if (isMouseActive) {
+        const dx = b.x - mouseWorldX;
+        const dy = b.y - mouseWorldY;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < 16 && distSq > 0.01) {
+          const dist = Math.sqrt(distSq);
+          const force = (4 - dist) * 0.5 / b.mass;
+          b.vx += (dx / dist) * force * dt * 60;
+          b.vy += (dy / dist) * force * dt * 60;
+        }
+      }
+      b.vx *= DAMPING; b.vy *= DAMPING; b.vz *= DAMPING;
+      b.x += b.vx * dt; b.y += b.vy * dt; b.z += b.vz * dt;
+      if (b.y - b.radius < -BOUNDS.y) { b.y = -BOUNDS.y + b.radius; b.vy = -b.vy * BOUNCE; b.vx *= 0.95; }
+      if (b.y + b.radius > BOUNDS.y) { b.y = BOUNDS.y - b.radius; b.vy = -b.vy * BOUNCE; }
+      if (b.x - b.radius < -BOUNDS.x) { b.x = -BOUNDS.x + b.radius; b.vx = -b.vx * BOUNCE; }
+      if (b.x + b.radius > BOUNDS.x) { b.x = BOUNDS.x - b.radius; b.vx = -b.vx * BOUNCE; }
+      if (b.z - b.radius < -BOUNDS.z) { b.z = -BOUNDS.z + b.radius; b.vz = -b.vz * BOUNCE; }
+      if (b.z + b.radius > BOUNDS.z) { b.z = BOUNDS.z - b.radius; b.vz = -b.vz * BOUNCE; }
+      b.rotX += b.rotSpeedX * dt; b.rotY += b.rotSpeedY * dt;
+      dummy.position.set(b.x, b.y, b.z);
+      dummy.rotation.set(b.rotX, b.rotY, 0);
+      dummy.scale.setScalar(b.radius);
+      dummy.updateMatrix();
+      instancedMesh.setMatrixAt(i, dummy.matrix);
+    }
+    instancedMesh.instanceMatrix.needsUpdate = true;
+  }
+
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { isVisible = entry.isIntersecting; if (isVisible) lastTime = performance.now(); });
+  }, { threshold: 0.05 });
+  heroObserver.observe(document.getElementById('hero'));
+
+  function animateHero(now) {
+    requestAnimationFrame(animateHero);
+    if (!isVisible) return;
+    const delta = Math.min((now - lastTime) / 1000, 0.1);
+    lastTime = now;
+    accumulator += delta;
+    while (accumulator >= FIXED_DT) { updatePhysics(FIXED_DT); accumulator -= FIXED_DT; }
+    time += delta; frameCount++;
+    if (frameCount % 2 === 0) {
+      camera.position.x = Math.sin(time * 0.15) * 0.4;
+      camera.position.y = Math.cos(time * 0.1) * 0.25;
+      camera.lookAt(0, 0, 0);
+    }
+    if (frameCount % 3 === 0) {
+      pointLight.position.x = Math.sin(time * 0.3) * 7;
+      pointLight.position.y = Math.cos(time * 0.2) * 4 + 3;
+    }
+    renderer.render(scene, camera);
+  }
+  animateHero(performance.now());
+})();
+
+// ============================================================
+// ASTRO CANVAS - Lego-style astronaut with starfield
+// (js-astro-webgl replacement - optimized)
+// ============================================================
+(function initAstroCanvas() {
+  const canvas = document.getElementById('astroCanvas');
+  const wrapper = document.getElementById('astroCanvasWrapper');
+  if (!canvas || !wrapper) return;
+
+  const rect = wrapper.getBoundingClientRect();
+  const W = Math.floor(rect.width);
+  const H = Math.floor(rect.height);
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    antialias: false,
+    alpha: true,
+    powerPreference: 'high-performance'
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.setSize(W, H);
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 100);
+  camera.position.set(0, 0.5, 7);
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  dirLight.position.set(3, 5, 4);
+  scene.add(dirLight);
+  const rimLight = new THREE.DirectionalLight(0xec4899, 0.8);
+  rimLight.position.set(-3, 2, -2);
+  scene.add(rimLight);
+
+  // Astronaut group (Lego-style from boxes)
+  const astronaut = new THREE.Group();
+
+  const whiteMat = new THREE.MeshStandardMaterial({ color: 0xf0f0f0, roughness: 0.4, metalness: 0.1 });
+  const yellowMat = new THREE.MeshStandardMaterial({ color: 0xfacc15, roughness: 0.3, metalness: 0.1 });
+  const blackMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.5 });
+  const orangeMat = new THREE.MeshStandardMaterial({ color: 0xf97316, roughness: 0.3 });
+
+  // Torso
+  const torsoGeo = new THREE.BoxGeometry(1.2, 1.4, 0.8);
+  const torso = new THREE.Mesh(torsoGeo, whiteMat);
+  torso.position.y = 0;
+  astronaut.add(torso);
+
+  // Chest logo (orange circle approximated as small box)
+  const logoGeo = new THREE.BoxGeometry(0.3, 0.3, 0.05);
+  const logo = new THREE.Mesh(logoGeo, orangeMat);
+  logo.position.set(0, 0.2, 0.42);
+  astronaut.add(logo);
+
+  // Head
+  const headGeo = new THREE.BoxGeometry(0.9, 0.9, 0.9);
+  const head = new THREE.Mesh(headGeo, yellowMat);
+  head.position.y = 1.15;
+  astronaut.add(head);
+
+  // Face (black visor area)
+  const faceGeo = new THREE.BoxGeometry(0.7, 0.35, 0.05);
+  const face = new THREE.Mesh(faceGeo, blackMat);
+  face.position.set(0, 1.15, 0.47);
+  astronaut.add(face);
+
+  // Eyes (two small white boxes)
+  const eyeGeo = new THREE.BoxGeometry(0.15, 0.15, 0.05);
+  const eyeMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+  const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
+  leftEye.position.set(-0.18, 1.2, 0.5);
+  astronaut.add(leftEye);
+  const rightEye = new THREE.Mesh(eyeGeo, eyeMat);
+  rightEye.position.set(0.18, 1.2, 0.5);
+  astronaut.add(rightEye);
+
+  // Pupils
+  const pupilGeo = new THREE.BoxGeometry(0.08, 0.08, 0.05);
+  const leftPupil = new THREE.Mesh(pupilGeo, blackMat);
+  leftPupil.position.set(-0.18, 1.2, 0.53);
+  astronaut.add(leftPupil);
+  const rightPupil = new THREE.Mesh(pupilGeo, blackMat);
+  rightPupil.position.set(0.18, 1.2, 0.53);
+  astronaut.add(rightPupil);
+
+  // Smile
+  const smileGeo = new THREE.BoxGeometry(0.25, 0.05, 0.05);
+  const smile = new THREE.Mesh(smileGeo, blackMat);
+  smile.position.set(0, 1.05, 0.5);
+  astronaut.add(smile);
+
+  // Arms
+  const armGeo = new THREE.BoxGeometry(0.3, 1.0, 0.3);
+  const leftArm = new THREE.Mesh(armGeo, whiteMat);
+  leftArm.position.set(-0.75, -0.1, 0);
+  astronaut.add(leftArm);
+  const rightArm = new THREE.Mesh(armGeo, whiteMat);
+  rightArm.position.set(0.75, -0.1, 0);
+  astronaut.add(rightArm);
+
+  // Hands (yellow)
+  const handGeo = new THREE.BoxGeometry(0.25, 0.25, 0.25);
+  const leftHand = new THREE.Mesh(handGeo, yellowMat);
+  leftHand.position.set(-0.75, -0.7, 0);
+  astronaut.add(leftHand);
+  const rightHand = new THREE.Mesh(handGeo, yellowMat);
+  rightHand.position.set(0.75, -0.7, 0);
+  astronaut.add(rightHand);
+
+  // Legs
+  const legGeo = new THREE.BoxGeometry(0.35, 0.9, 0.35);
+  const leftLeg = new THREE.Mesh(legGeo, whiteMat);
+  leftLeg.position.set(-0.3, -1.15, 0);
+  astronaut.add(leftLeg);
+  const rightLeg = new THREE.Mesh(legGeo, whiteMat);
+  rightLeg.position.set(0.3, -1.15, 0);
+  astronaut.add(rightLeg);
+
+  // Feet
+  const footGeo = new THREE.BoxGeometry(0.4, 0.2, 0.5);
+  const leftFoot = new THREE.Mesh(footGeo, whiteMat);
+  leftFoot.position.set(-0.3, -1.7, 0.05);
+  astronaut.add(leftFoot);
+  const rightFoot = new THREE.Mesh(footGeo, whiteMat);
+  rightFoot.position.set(0.3, -1.7, 0.05);
+  astronaut.add(rightFoot);
+
+  // Backpack
+  const packGeo = new THREE.BoxGeometry(0.9, 1.1, 0.3);
+  const pack = new THREE.Mesh(packGeo, whiteMat);
+  pack.position.set(0, 0.1, -0.55);
+  astronaut.add(pack);
+
+  scene.add(astronaut);
+
+  // Starfield (InstancedMesh for performance)
+  const NUM_STARS = 80;
+  const starGeo = new THREE.SphereGeometry(0.04, 4, 4);
+  const starMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  const starMesh = new THREE.InstancedMesh(starGeo, starMat, NUM_STARS);
+  const starDummy = new THREE.Object3D();
+  const starData = [];
+
+  for (let i = 0; i < NUM_STARS; i++) {
+    const x = (Math.random() - 0.5) * 14;
+    const y = (Math.random() - 0.5) * 10;
+    const z = -3 - Math.random() * 5;
+    const s = 0.5 + Math.random() * 1.5;
+    starDummy.position.set(x, y, z);
+    starDummy.scale.setScalar(s);
+    starDummy.updateMatrix();
+    starMesh.setMatrixAt(i, starDummy.matrix);
+    starData.push({ x, y, z, s, speed: 0.2 + Math.random() * 0.5 });
+  }
+  starMesh.instanceMatrix.needsUpdate = true;
+  scene.add(starMesh);
+
+  // Floating particles (colored, like the original)
+  const NUM_PARTICLES = 20;
+  const particleGeo = new THREE.SphereGeometry(0.08, 6, 6);
+  const particleColors = [0xec4899, 0x7c3aed, 0x06b6d4, 0xf97316, 0x22c55e, 0xeab308];
+  const particleMesh = new THREE.InstancedMesh(particleGeo, new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.4 }), NUM_PARTICLES);
+  const particleDummy = new THREE.Object3D();
+  const particleColorObj = new THREE.Color();
+  const particleData = [];
+
+  for (let i = 0; i < NUM_PARTICLES; i++) {
+    const x = (Math.random() - 0.5) * 8;
+    const y = (Math.random() - 0.5) * 6;
+    const z = (Math.random() - 0.5) * 4 - 1;
+    const color = particleColors[i % particleColors.length];
+    particleColorObj.setHex(color);
+    particleMesh.setColorAt(i, particleColorObj);
+    particleData.push({
+      x, y, z,
+      baseX: x, baseY: y,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.5 + Math.random() * 1.0,
+      amp: 0.3 + Math.random() * 0.5
+    });
+  }
+  particleMesh.instanceColor.needsUpdate = true;
+  scene.add(particleMesh);
+
+  // Mouse interaction
+  let targetRotX = 0, targetRotY = 0;
+  let isMouseActive = false;
+  let mouseTimer = null;
+
+  wrapper.addEventListener('mousemove', (e) => {
+    const r = wrapper.getBoundingClientRect();
+    targetRotX = ((e.clientY - r.top) / r.height - 0.5) * 0.4;
+    targetRotY = ((e.clientX - r.left) / r.width - 0.5) * 0.6;
+    isMouseActive = true;
+    clearTimeout(mouseTimer);
+    mouseTimer = setTimeout(() => { isMouseActive = false; }, 200);
+  }, { passive: true });
+  wrapper.addEventListener('mouseleave', () => { isMouseActive = false; }, { passive: true });
+
+  // Resize
+  function onResize() {
+    const r = wrapper.getBoundingClientRect();
+    camera.aspect = r.width / r.height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(r.width, r.height);
+  }
+  window.addEventListener('resize', onResize, { passive: true });
+
+  // Animation
+  let lastTime = performance.now();
+  let time = 0;
+  let isVisible = true;
+  let frameCount = 0;
+
+  const astroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { isVisible = entry.isIntersecting; if (isVisible) lastTime = performance.now(); });
+  }, { threshold: 0.1 });
+  astroObserver.observe(wrapper);
+
+  function animateAstro(now) {
+    requestAnimationFrame(animateAstro);
+    if (!isVisible) return;
+
+    const delta = Math.min((now - lastTime) / 1000, 0.05);
+    lastTime = now;
+    time += delta;
+    frameCount++;
+
+    // Astronaut gentle float + rotation
+    astronaut.position.y = Math.sin(time * 1.2) * 0.15;
+    astronaut.rotation.y += delta * 0.3;
+
+    // Mouse influence on astronaut
+    if (isMouseActive) {
+      astronaut.rotation.x += (targetRotX - astronaut.rotation.x) * 0.05;
+      astronaut.rotation.z += (-targetRotY * 0.3 - astronaut.rotation.z) * 0.05;
+    } else {
+      astronaut.rotation.x *= 0.95;
+      astronaut.rotation.z *= 0.95;
+    }
+
+    // Arm swing
+    leftArm.rotation.x = Math.sin(time * 2) * 0.15;
+    rightArm.rotation.x = -Math.sin(time * 2) * 0.15;
+
+    // Update particles
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      const p = particleData[i];
+      const px = p.baseX + Math.sin(time * p.speed + p.phase) * p.amp;
+      const py = p.baseY + Math.cos(time * p.speed * 0.7 + p.phase) * p.amp;
+      particleDummy.position.set(px, py, p.z);
+      particleDummy.scale.setScalar(1);
+      particleDummy.updateMatrix();
+      particleMesh.setMatrixAt(i, particleDummy.matrix);
+    }
+    particleMesh.instanceMatrix.needsUpdate = true;
+
+    // Twinkle stars (every 3rd frame)
+    if (frameCount % 3 === 0) {
+      for (let i = 0; i < NUM_STARS; i++) {
+        const s = starData[i];
+        const twinkle = 0.5 + Math.sin(time * s.speed * 3 + i) * 0.5;
+        starDummy.position.set(s.x, s.y, s.z);
+        starDummy.scale.setScalar(s.s * twinkle);
+        starDummy.updateMatrix();
+        starMesh.setMatrixAt(i, starDummy.matrix);
+      }
+      starMesh.instanceMatrix.needsUpdate = true;
+    }
+
+    // Subtle camera movement
+    camera.position.x = Math.sin(time * 0.2) * 0.2;
+    camera.position.y = 0.5 + Math.cos(time * 0.15) * 0.15;
+    camera.lookAt(0, 0, 0);
+
+    renderer.render(scene, camera);
+  }
+  animateAstro(performance.now());
+})();
+</script>
+
+<script>
+// Mobile nav toggle
+const mobileToggle = document.getElementById('mobileToggle');
+const mainNav = document.getElementById('mainNav');
+mobileToggle.addEventListener('click', () => { mainNav.classList.toggle('open'); });
+mainNav.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => mainNav.classList.remove('open')); });
+
+// Scroll progress
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.getElementById('scrollProgress').style.width = progress + '%';
+}, { passive: true });
+
+// Fade in on scroll
+const fadeEls = document.querySelectorAll('.fade-in');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); fadeObserver.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+fadeEls.forEach(el => fadeObserver.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// Email grid animation
+const emailGrid = document.getElementById('emailGrid');
+for (let i = 0; i < 36; i++) {
+  const cell = document.createElement('div');
+  cell.className = 'email-cell';
+  emailGrid.appendChild(cell);
+}
+const emailCells = document.querySelectorAll('.email-cell');
+setInterval(() => { emailCells[Math.floor(Math.random() * emailCells.length)].classList.add('open'); }, 800);
+setInterval(() => { emailCells.forEach(c => c.classList.remove('open')); }, 8000);
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
+
