@@ -972,6 +972,12 @@ import * as THREE from 'three';
   }
   window.addEventListener('resize', onResize, { passive: true });
 
+  // Make astronaut larger and overflow the card
+  astronaut.scale.set(2.5, 2.5, 2.5); // Scale up significantly
+  
+  // Move camera closer for dramatic effect
+  camera.position.set(0, 0.5, 4);
+
   // Animation
   let lastTime = performance.now();
   let time = 0;
@@ -992,9 +998,10 @@ import * as THREE from 'three';
     time += delta;
     frameCount++;
 
-    // Astronaut gentle float + rotation
-    astronaut.position.y = Math.sin(time * 1.2) * 0.15;
-    astronaut.rotation.y += delta * 0.3;
+    // Astronaut gentle float + rotation + Z-axis movement (coming out of card)
+    astronaut.position.y = Math.sin(time * 1.2) * 0.3; // More vertical movement
+    astronaut.position.z = Math.sin(time * 0.8) * 1.5; // Move in/out towards viewer
+    astronaut.rotation.y += delta * 0.4; // Faster rotation
 
     // Mouse influence on astronaut
     if (isMouseActive) {
@@ -1005,9 +1012,9 @@ import * as THREE from 'three';
       astronaut.rotation.z *= 0.95;
     }
 
-    // Arm swing
-    leftArm.rotation.x = Math.sin(time * 2) * 0.15;
-    rightArm.rotation.x = -Math.sin(time * 2) * 0.15;
+    // Arm swing (more pronounced)
+    leftArm.rotation.x = Math.sin(time * 2.5) * 0.3;
+    rightArm.rotation.x = -Math.sin(time * 2.5) * 0.3;
 
     // Update particles
     for (let i = 0; i < NUM_PARTICLES; i++) {
